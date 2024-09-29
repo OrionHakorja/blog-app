@@ -253,9 +253,12 @@
                         <form method="POST" action="{{route('admin.delete', $blog->id)}}" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">DELETE</button>
+                            <button type="submit" style="display: inline-block; padding: 10px 20px; font-size: 1rem; font-weight: 600; text-align: center; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; background-color: #dc3545; color: white; transition: background-color 0.3s ease;">
+                                DELETE
+                            </button>
                         </form>
                     </div>
+
                 </div>
             @endforeach
             <!-- End of blog block -->
