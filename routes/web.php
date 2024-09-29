@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Blog;
@@ -81,6 +82,17 @@ Route::middleware('auth')->group(function () {
      * @see BlogController::delete
      */
     Route::delete('/blogs-delete/{blog}', [BlogController::class, 'delete'])->name('blogs.delete');
+});
+
+Route::middleware('admin')->group(function (){
+    Route::get('/admin.dashboard', function (){
+        $blogs = Blog::paginate(9);
+        return view('admin.dashboard')->with([
+            'blogs' => $blogs
+        ]);
+    })->name('admin.dashboard');
+    Route::get('/search.admin', [AdminController::class, 'search'])->name('blogs.search2');
+    Route::delete('delete/{post}', [AdminController::class, 'delete'])->name('admin.delete');
 });
 
 require __DIR__.'/auth.php';
